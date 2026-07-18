@@ -1,6 +1,6 @@
 ---
 name: thesis-formatting-skill
-description: Create, revise, and visually verify Chinese academic Word documents using the user's preferred A4 SimSun/Times New Roman/SimHei typography, chapter-based figure/table/equation numbering, real Word SEQ fields, bookmarks, and REF cross-references. Use for Chinese technical reports, thesis-style reports, NF-SWIPT manuscripts, paper figure-explanation reports, or DOCX cleanup where numbering and citations must update automatically.
+description: Create, revise, and visually verify general Chinese academic Word documents using A4 SimSun/Times New Roman/SimHei typography, chapter-based figure/table/equation numbering, real Word SEQ fields, bookmarks, and REF cross-references. Use for theses, dissertations, journal or conference manuscripts, technical reports, project reports, paper figure-explanation reports, or DOCX cleanup where formatting, numbering, and citations must update automatically.
 ---
 
 # Academic Word Format
@@ -8,11 +8,12 @@ description: Create, revise, and visually verify Chinese academic Word documents
 ## Core workflow
 
 1. Use the `documents` skill for DOCX creation or editing and follow its render-and-verify workflow.
-2. Check whether the user supplied an official university, conference, or journal template. Treat it as authoritative. Otherwise copy `assets/NF-SWIPT_中文学术技术报告模板.docx`.
-3. Read `references/format-spec.md` before making layout, numbering, or citation decisions.
-4. Keep scientific claims bounded by the available model, simulation, or experiment evidence.
-5. Update all Word fields before delivery: open the document in Word, select all with `Ctrl+A`, then press `F9`.
-6. Render the final DOCX to PDF, inspect every page, and run:
+2. Check whether the user supplied an official university, conference, or journal template. Treat it as authoritative. Otherwise copy `assets/通用中文学术Word模板_含交叉引用.docx`.
+3. Use `assets/NF-SWIPT_中文学术技术报告模板.docx` only when the task is specifically the NF-SWIPT project.
+4. Read `references/format-spec.md` before making layout, numbering, or citation decisions.
+5. Keep scientific claims bounded by the available model, simulation, or experiment evidence.
+6. Update all Word fields before delivery: open the document in Word, select all with `Ctrl+A`, then press `F9`.
+7. Render the final DOCX to PDF, inspect every page, and run:
 
 ```powershell
 python scripts/audit_academic_docx.py "<document.docx>"
@@ -37,5 +38,6 @@ python scripts/audit_academic_docx.py "<document.docx>"
 
 ## Output discipline
 
-- Keep a submission manuscript separate from an internal Fig.1–Fig.5 explanatory report. The manuscript uses chapter-based numbering; the explanatory report may retain fixed paper-figure identifiers when mapping directly to the five planned figures.
+- Choose the document structure from the actual task. Do not carry NF-SWIPT terminology, figures, methods, or parameter names into unrelated theses or reports.
+- Keep a submission manuscript separate from an internal explanatory report. The manuscript follows the target venue; an explanatory report may retain fixed source-figure identifiers when it maps directly to another artifact.
 - Deliver the DOCX and, when requested, a PDF preview. Do not leave temporary PDFs, rendered pages, or staging files in the project folder.
