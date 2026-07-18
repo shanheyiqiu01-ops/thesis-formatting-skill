@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文格式与交叉引用"
+  short_description: "按个人规范创建、排版并核验中文学术 Word 文档"
+  default_prompt: "Use $thesis-formatting-skill to create or revise this Chinese academic Word document with chapter-based numbering and cross-references."
