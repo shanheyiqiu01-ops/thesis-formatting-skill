@@ -1,4 +1,4 @@
 interface:
-  display_name: "论文格式与交叉引用"
-  short_description: "按个人规范创建、排版并核验中文学术 Word 文档"
-  default_prompt: "Use $thesis-formatting-skill to create or revise this Chinese academic Word document with chapter-based numbering and cross-references."
+  display_name: "中文论文写作与Word规范"
+  short_description: "构建并核验含OMML公式、三线表和自动交叉引用的中文学术论文"
+  default_prompt: "Use $thesis-formatting-skill to draft or revise this Chinese academic manuscript, preserve evidence boundaries, insert real OMML math, use uncolored three-line tables, and verify Word fields and pagination."
