@@ -9,7 +9,7 @@ description: Create, draft, revise, format, and verify Chinese academic Word man
 
 1. Use the `documents` skill for DOCX creation or editing and follow its render-and-verify contract.
 2. Treat an official university, conference, or journal template as authoritative. Otherwise copy `assets/通用中文学术Word模板_含交叉引用.docx`; use `assets/NF-SWIPT_中文学术技术报告模板.docx` only for that project.
-3. Read `references/format-spec.md`. For a new manuscript or major revision, also read `references/paper-production-workflow.md`.
+3. Read `references/format-spec.md`. For a new manuscript or major revision, also read `references/paper-production-workflow.md`. For manuscript structure, acronym definitions, citation punctuation, versioned revision, or a missing bibliography, read `references/manuscript-structure-and-revision-policy.md`.
 4. Establish the evidence boundary before drafting: identify source code, configuration, tables/CSV, figures, verified literature, allowed claims, prohibited claims, and whether rerunning experiments is authorized.
 5. Build the chapter outline and map every main claim to a formula, table, figure, source, or explicit limitation. Do not start with long prose when the evidence chain is not closed.
 6. Create or revise the DOCX using named Word styles, real OMML equations, standard three-line tables, and real `SEQ`/bookmark/`REF` fields. Read `references/word-math-and-tables.md` before handling equations or tables.
@@ -22,6 +22,19 @@ python scripts/audit_academic_docx.py "<document.docx>" --strict
 
 9. Render the final DOCX to PDF/PNGs and inspect every page. If the required renderer is unavailable, follow the `documents` skill fallback: perform Word pagination plus structural OOXML audits and disclose that visual PNG QA was not completed.
 10. Remove temporary PDFs, page images, staging scripts, lock files, and backups from the delivery folder. Preserve user files and unrelated Git changes.
+
+## Localized revision and bibliography guardrails
+
+- Treat an existing academic DOCX as a protected artifact. Make only requested changes; preserve body text, OMML, figures, tables, styles, pagination settings, and unrelated fields.
+- Create a dated sibling version such as `7.25论文题目.docx` when the user asks to distinguish revisions. Do not overwrite the prior dated draft.
+- Keep the abstract self-contained. At the first abstract occurrence, write the full Chinese term, original-language full term, and abbreviation. Treat the main text as a separate abbreviation scope when required by the governing template.
+- End the introduction with an explicit paper-organization paragraph that states what each remaining numbered section does.
+- Format numeric literature citations as superscripts. For adjacent multiple citations, use `[1][2][3]` without commas unless the official template requires another form.
+- When deleting separators between citation fields, remove only the separator runs. Preserve each citation field, bookmark, hyperlink, and superscript formatting.
+- **Never generate, reconstruct, recover, or import bibliography entries merely because the reference section is empty or entries were deleted.** Preserve the `参考文献` heading and leave the bibliography area blank for the author unless the user explicitly requests bibliography recovery and supplies or approves the source records.
+- Do not invent references, infer missing metadata, search old chats for deleted entries, or flatten live citation fields to static text without explicit user approval.
+- If citation fields point to missing bibliography bookmarks, report the broken relationship and ask whether to keep citations untouched, remove them, or rebuild them from an author-approved list.
+- Follow the complete rules and paper skeleton in `references/manuscript-structure-and-revision-policy.md`.
 
 ## Non-negotiable mathematics
 

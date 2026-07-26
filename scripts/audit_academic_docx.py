@@ -27,6 +27,8 @@ UNDERSCORE_MATH_RE = re.compile(
 )
 PLAIN_GREEK_RE = re.compile(r"[ρθηλΔ]|μ(?![WHAFCVΩms]\b)")
 REF_TARGET_RE = re.compile(r"\bREF\s+([A-Za-z_][A-Za-z0-9_]*)")
+CITATION_COMMA_RE = re.compile(r"\[\d+\]\s*[,，]\s*\[\d+\]")
+REFERENCE_ENTRY_RE = re.compile(r"^\[\d+\]\s+\S")
 
 
 def qn(namespace: str, local: str) -> str:
@@ -171,12 +173,14 @@ def audit(path: Path, strict: bool = False) -> dict:
 
     plain_candidates = []
     latex_candidates = []
+    citation_comma_groups = []
     for paragraph in body.xpath(".//w:p", namespaces=NS):
         if paragraph_is_reference(paragraph):
             continue
         text = paragraph_plain_text(paragraph)
         if not text:
             continue
+        citation_comma_groups.extend(CITATION_COMMA_RE.findall(text))
         latex_candidates.extend(LATEX_RE.findall(text))
         plain_candidates.extend(UNDERSCORE_MATH_RE.findall(text))
         plain_candidates.extend(PLAIN_GREEK_RE.findall(text))
@@ -191,6 +195,27 @@ def audit(path: Path, strict: bool = False) -> dict:
         errors.append("存在疑似普通文本数学变量：" + "、".join(sorted(set(plain_candidates))[:20]))
     if strict and not math_nodes:
         errors.append("严格模式下未检测到任何OMML数学对象")
+    if citation_comma_groups:
+        message = "多文献引用之间存在逗号：" + "、".join(
+            sorted(set(citation_comma_groups))[:10]
+        )
+        (errors if strict else warnings).append(message)
+
+    body_paragraph_texts = [
+        paragraph_plain_text(paragraph).strip()
+        for paragraph in body.xpath("./w:p", namespaces=NS)
+    ]
+    if "参考文献" in body_paragraph_texts:
+        heading_index = body_paragraph_texts.index("参考文献")
+        bibliography_entries = [
+            text
+            for text in body_paragraph_texts[heading_index + 1 :]
+            if REFERENCE_ENTRY_RE.match(text)
+        ]
+        if not bibliography_entries:
+            warnings.append(
+                "参考文献区域为空：按默认策略保留空白并由作者填写，不自动生成或恢复题录"
+            )
 
     if images and seq_counts["Figure"] == 0:
         errors.append("存在图片但缺少SEQ Figure域")
