@@ -27,7 +27,7 @@ python scripts/audit_academic_docx.py "<document.docx>" --strict
 
 - Treat an existing academic DOCX as a protected artifact. Make only requested changes; preserve body text, OMML, figures, tables, styles, pagination settings, and unrelated fields.
 - Create a dated sibling version such as `7.25论文题目.docx` when the user asks to distinguish revisions. Do not overwrite the prior dated draft.
-- Keep the abstract self-contained. At the first abstract occurrence, write the full Chinese term, original-language full term, and abbreviation. Treat the main text as a separate abbreviation scope when required by the governing template.
+- For a Chinese manuscript draft, write technical terms normally in Chinese in the abstract. Do not append parenthetical English full terms or abbreviations unless the user or the governing template explicitly requires them. Introduce every non-universal abbreviation at its first main-text occurrence as `中文全称（English full term，ABBREVIATION）`, then use the abbreviation consistently.
 - End the introduction with an explicit paper-organization paragraph that states what each remaining numbered section does.
 - Format numeric literature citations as superscripts. For adjacent multiple citations, use `[1][2][3]` without commas unless the official template requires another form.
 - When deleting separators between citation fields, remove only the separator runs. Preserve each citation field, bookmark, hyperlink, and superscript formatting.

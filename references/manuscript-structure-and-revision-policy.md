@@ -54,17 +54,28 @@ Summarize only supported findings. Do not add new claims, citations, equations, 
 
 ## 2. First-use terminology and abbreviations
 
-Treat the abstract as self-contained. On first use, write:
+For a Chinese manuscript draft, keep the Chinese abstract in Chinese. Write the
+technical term normally and do not append its English full term or abbreviation
+in parentheses unless the user or the governing template explicitly requires
+that form. This avoids crowding a Chinese abstract with English parentheticals
+when the paper will later receive a separate English translation.
+
+Treat the main text as the abbreviation-definition scope. At the first
+main-text occurrence, write:
 
 `中文全称（English full term，ABBREVIATION）`
 
-Examples:
+Main-text examples:
 
+- `同时无线信息与能量传输（simultaneous wireless information and power transfer，SWIPT）`
 - `近场同时无线信息与能量传输（near-field simultaneous wireless information and power transfer，NF-SWIPT）`
 - `基于功率分割的近场同时无线信息与能量传输（power-splitting near-field simultaneous wireless information and power transfer，PS-NF-SWIPT）`
 - `粒子群优化（particle swarm optimization，PSO）`
 
-After the first definition within that scope, use the abbreviation consistently. If the venue treats the abstract and main text as separate scopes, define the abbreviation again at its first main-text occurrence.
+After the first main-text definition, use the abbreviation consistently. When
+an English abstract or full English manuscript is prepared later, define its
+abbreviations independently according to the English template; do not reuse the
+Chinese draft's abstract formatting by default.
 
 Apply the same rule to TS, PS, EH, ID, BER, SNR, PTE, AWGN, and other non-universal abbreviations. Do not expand ordinary units or software/product names unnecessarily.
 
@@ -109,7 +120,8 @@ Only restore or generate bibliography entries when all of the following are true
 ## 6. Acceptance checklist
 
 - Correct section order and explicit introduction organization paragraph.
-- Abstract and main text use correct first-use abbreviation definitions.
+- Chinese abstract contains no unrequested English full-term or abbreviation parentheticals.
+- Main text defines each non-universal abbreviation at its first occurrence.
 - Multiple citations contain no unwanted commas.
 - Citation superscripts/fields are preserved.
 - Empty bibliography remains empty unless explicit restoration was authorized.
